@@ -1,0 +1,20 @@
+{
+  "name": "network-infrastructure",
+  "authors": [
+    "Ujjwal Ojha <bring2uo@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "^3.3.0"
+  }
+}
