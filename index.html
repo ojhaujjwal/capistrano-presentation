@@ -47,9 +47,7 @@
     </section>
     <section>
       <section>
-        <h3>
-          Zero Downtime Deployment
-        </h3>
+        <h3>Zero Downtime Deployment</h3>
         <ul>
           <li class="fragment">Bringing frequent updates to your websites/web applications</li>
           <li class="fragment">Without the annoying message "Site currently under maintainance"</li>
@@ -57,6 +55,54 @@
       </section>
       <section>
         <img src="img/under-maintenance.png" alt="Site under maintainance">
+      </section>
+    </section>
+    <section>
+      <section>
+        <h3>A little background on traditional deployment techniques</h3>
+      </section>
+      <section>
+        <img src="img/ftp.jpg" alt="FTP deployment">
+      </section>
+      <section>
+        <ul>
+          <li>SSH to the server</li>
+          <li class="fragment">git pull manually</li>
+          <li class="fragment">and maybe manually run "npm install"</li>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h3>Capistrano</h3>
+        <ul>
+          <li class="fragment">Automating scripts on one or many servers</li>
+          <li class="fragment">Automating process of releasing new version of an application</li>
+        </ul>
+      </section>
+      <section>
+        <h3>How does it work</h3>
+        <ul>
+          <li class="fragment">No software installed on server</li>
+          <li class="fragment">"gem install capistrano" on local machine</li>
+          <li class="fragment">Executes a series of commands on a remote machine via SSH</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Release process</h3>
+        <ul>
+          <li class="fragment">Download latest code from repository</li>
+          <li class="fragment">Perform pre and post-deploy functions</li>
+          <li class="fragment">like restarting web server, refreshing cache, running db migrations etc.</li>
+          <li class="fragment">Publishes the new version on deployment success</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Instant rollback</h3>
+        <ul>
+          <li class="fragment">Maintains multiple releases directory</li>
+          <li class="fragment">Application can be easily rolled back to the previous version</li>
+        </ul>
       </section>
     </section>
     <section>
@@ -80,24 +126,29 @@
     // More info https://github.com/hakimel/reveal.js#dependencies
     dependencies: [
       {
-        src: 'bower_components/reveal.js/lib/js/classList.js', condition: function () {
-        return !document.body.classList;
-      }
+        src: 'bower_components/reveal.js/lib/js/classList.js',
+        condition: function () {
+          return !document.body.classList;
+        }
       },
       {
-        src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function () {
-        return !!document.querySelector('[data-markdown]');
-      }
+        src: 'bower_components/reveal.js/plugin/markdown/marked.js',
+        condition: function () {
+          return !!document.querySelector('[data-markdown]');
+        }
       },
       {
-        src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function () {
-        return !!document.querySelector('[data-markdown]');
-      }
+        src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
+        condition: function () {
+          return !!document.querySelector('[data-markdown]');
+        }
       },
       {
-        src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
-        hljs.initHighlightingOnLoad();
-      }
+        src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+        async: true,
+        callback: function () {
+          hljs.initHighlightingOnLoad();
+        }
       },
       {src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true},
       {src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true}
