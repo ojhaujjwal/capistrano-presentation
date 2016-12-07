@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "webpack "
+  },
+  "dependencies": {
+    "reveal.js": "3.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "webpack": "^1.13.3"
+  }
+}
