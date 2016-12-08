@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Zero Downtime Deployment</title>
+  <title>Continuous Delivery with Capistrano</title>
 
-  <meta name="description" content="Zero Downtime Deployment with Capistrano">
+  <meta name="description" content="Continuous Delivery with Capistrano">
   <meta name="author" content="Ujjwal OJha">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,8 +21,21 @@
   <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
 
   <style type="text/css">
-    .reveal h1, .reveal h2, .reveal h3 {
-      text-transform: capitalize;
+    .reveal section img {
+      border: 0;
+      background: none;
+      box-shadow: 0 0 #000;
+    }
+    .reveal section h2, .reveal section h3 {
+      text-transform: none;
+    }
+    .reveal pre {
+      box-shadow: none;
+    }
+
+    .reveal pre code {
+      max-height: none;
+      max-width: none;
     }
   </style>
 
@@ -42,10 +55,17 @@
 <div class="reveal">
   <div class="slides">
     <section>
-      <h2>Zero Downtime Deployment</h2>
+      <h2>Continuous Delivery</h2>
       <p>With Capistrano</p>
     </section>
     <section>
+      <section>
+        <h3>Continuous Delivery</h3>
+        <p>Frequent releases in short cycles</p>
+        <p class="fragment">Reduce the cost, time, and risk of delivering changes</p>
+        <p class="fragment">Goal to achieve minimal downtime and frequent updates</p>
+        <p class="fragment">and satisfy the custom through early and <b>continuous delivery</b> of valuable software</p>
+      </section>
       <section>
         <h3>Zero Downtime Deployment</h3>
         <ul>
@@ -78,6 +98,7 @@
         <ul>
           <li class="fragment">Automating scripts on one or many servers</li>
           <li class="fragment">Automating process of releasing new version of an application</li>
+          <li class="fragment">Capistrano is a ruby gem. But, it can be used to deploy application of any language.</li>
         </ul>
       </section>
       <section>
@@ -103,6 +124,86 @@
           <li class="fragment">Maintains multiple releases directory</li>
           <li class="fragment">Application can be easily rolled back to the previous version</li>
         </ul>
+      </section>
+      <section>
+        <h3>Directory structure</h3>
+        <pre>
+<code>
+app
+ ├──releases
+ │     ├── 20150080072500
+ │     ├── 20150090083000
+ │     ├── 20150100093500
+ │     ├── 20150110104000
+ │     └── 20150120114500
+ │        ├── checked out files from Git repository
+ │        └── config
+ │           ├──  db.yml -> /var/www/app/shared/config/db.yml
+ │           └──  secrets.yml -> /var/www/app/shared/config/secrets.yml
+ │
+ ├──current -> /var/www/myapp/releases/20150120114500/
+ ├──repo
+ │     └── VCS related data
+ └──shared
+       ├── linked_files and linked_dirs
+          └── config
+             ├── db.yml
+             └── secrets.yml
+</code>
+        </pre>
+      </section>
+    </section>
+    <section>
+      <h2>Demo Time. Hurray!</h2>
+    </section>
+    <section>
+      <section>
+        <h3>Installation</h3>
+        <p>gem install capistrano</p>
+        <p><b>Deploy using:</b> cap production deploy</p>
+      </section>
+      <section>
+        <h3>Sample Capfile</h3>
+        <pre>
+          <code>
+set :deploy_config_path, 'cap/deploy.rb'
+set :stage_config_path, 'cap/stages'
+
+require "capistrano/setup"
+require "capistrano/deploy"
+require 'capistrano/bundler'
+require 'capistrano/rails'
+require 'capistrano/passenger'
+
+# Load custom tasks from `cap/tasks/tasks` if you have any defined
+Dir.glob('cap/tasks/*.rake').each { |r| import r }
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h3>Sample configuration</h3>
+        <pre>
+          <code>
+set :application, 'my_app_name'
+set :repo_url, 'git@example.com:me/my_repo.git'
+
+set :deploy_to, '/var/www/app'
+
+set :linked_files, ['config/db.yml', 'config/secrets.yml']
+
+set :linked_dirs, ['tmp/session', 'tmp/cache', 'backups']
+
+namespace :deploy do
+  after :updated, "composer:install"
+  after :updated, "bower:install"
+
+  after :finished, "reload:nginx"
+  after :finished, "notify:finish"
+
+  after :failed, "notify:failure"
+end
+          </code>
+        </pre>
       </section>
     </section>
     <section>
