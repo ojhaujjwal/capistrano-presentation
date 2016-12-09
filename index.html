@@ -211,6 +211,19 @@ end
           </code>
         </pre>
       </section>
+      <section>
+        <h3>Sample stage configuration</h3>
+        <pre>
+          <code>
+server 'server-ip-here',
+	roles: %w{web app},
+	user: 'root',
+	port: 22
+set :env, 'production'
+set :deploy_to, "/var/www/app"
+          </code>
+        </pre>
+      </section>
     </section>
     <section>
       <h2>Thank you!</h2>
