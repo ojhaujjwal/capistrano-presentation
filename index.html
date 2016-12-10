@@ -80,23 +80,25 @@
         <a href="http://twitter.com/ojhaujjwal" target="_blank">ojhaujjwal</a>
       </h2>
     </section>
+    <section data-background="#dddddd">
+      <img src="img/introcept-global-logo.png" class="Introcept Logo">
+    </section>
     <section>
       <section>
         <h3>Continuous Delivery</h3>
-        <p>Frequent releases in short cycles</p>
-        <p class="fragment">practice of using automation to release software in short iterations</p>
-        <p class="fragment">Goal to achieve minimal downtime and frequent updates</p>
-        <p class="fragment">and satisfy the custom through early and <b>continuous delivery</b> of valuable software.</p>
+        <ul>
+          <li>Frequent releases in short cycles</li>
+          <li class="fragment">practice of using automation to release software in short iterations</li>
+          <li class="fragment">Goal to achieve minimal downtime and frequent updates</li>
+          <li class="fragment">and satisfy the custom through early and <b>continuous delivery</b> of valuable software.</li>
+        </ul>
       </section>
       <section>
         <h3>Zero Downtime Deployment</h3>
         <ul>
-          <p class="fragment">Bringing frequent updates to your websites/web applications</p>
-          <p class="fragment">Without the annoying message "Site currently under maintainance"</p>
+          <li>Bringing frequent updates to your websites/web applications</li>
+          <li class="fragment">Without the annoying message "Site currently under maintainance"</li>
         </ul>
-      </section>
-      <section>
-        <img src="img/under-maintenance.png" alt="Site under maintainance">
       </section>
       <section>
         <img src="img/waiting.png" alt="User Waiting"/>
@@ -115,7 +117,6 @@
           <li>SSH to the server</li>
           <li class="fragment">git pull manually</li>
           <li class="fragment">and maybe manually run "npm install"</li>
-          </li>
         </ul>
       </section>
     </section>
@@ -128,9 +129,11 @@
       </section>
       <section>
         <h3>How does it work?</h3>
-        <p class="fragment">No software installed on server.</p>
-        <p class="fragment">"gem install capistrano" on local machine.</p>
-        <p class="fragment">Executes a series of commands on a remote machine via SSH.</p>
+        <ul>
+          <li class="fragment">No software installed on server<span class="fragment">(except Git/SVN)</span></li>
+          <li class="fragment">"gem install capistrano" on local machine.</li>
+          <li class="fragment">Executes a series of commands on a remote machine via SSH.</li>
+        </ul>
       </section>
       <section>
         <h3>Release process</h3>
@@ -159,8 +162,8 @@ app
  │    └── 20150120114500
  │       ├── checked out files from Git repository
  │       └── config
- │          ├──  db.yml -> /var/www/app/shared/config/db.yml
- │          └──  secret.yml -> /var/www/app/shared/config/secret.yml
+ │          ├──  db.yml->/var/www/app/shared/config/db.yml
+ │          └──  secret.yml->/var/www/app/shared/config/secret.yml
  │
  ├──current -> /var/www/myapp/releases/20150120114500/
  ├──repo
@@ -225,7 +228,7 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 
 set :deploy_to, '/var/www/app'
 
-set :linked_files, ['config/db.yml', 'config/secrets.yml']
+set :linked_files, ['config/database.yml', 'config/secrets.yml']
 
 set :linked_dirs, ['tmp/session', 'tmp/cache', 'backups']
 
@@ -256,10 +259,11 @@ set :deploy_to, "/var/www/app"
       </section>
     </section>
     <section>
+      <h2>Thank you!</h2>
       <h2>Any Questions?</h2>
     </section>
     <section>
-      <h2>Thank you!</h2>
+      <h2><img src="img/introcept-vacancy.png" alt="Introcept Vacancy"/></h2>
     </section>
   </div>
 
